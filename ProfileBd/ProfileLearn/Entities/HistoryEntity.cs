@@ -2,7 +2,7 @@
 
 namespace ProfileLearn.Entities
 {
-    public class HistoryEntitty
+    public class HistoryEntity : CoreCombineEntity
     {
         public DateTime? CreatedDate { get; set; }
         public DateTime? LastUpdatedDated { get; set; }  
