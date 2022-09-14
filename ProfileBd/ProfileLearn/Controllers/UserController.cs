@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace ProfileLearn.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ControllerBase
+ 
+    public class UserController : BaseApiController
     {
         private readonly DataContext _context;
 
