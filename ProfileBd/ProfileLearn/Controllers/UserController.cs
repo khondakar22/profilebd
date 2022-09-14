@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProfileLearn.Data;
+using ProfileLearn.Dto;
 using ProfileLearn.Entities;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,17 @@ namespace ProfileLearn.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
-             return await _context.Users.ToListAsync(CancellationToken.None);
+            return await _context.Users.Include(x => x.HistoryEntity)
+               .Select(x =>
+                  new UserResponse
+                  {
+                      Id = x.Id,
+                      UserName = x.UserName,
+                      CreationModificationHistory = x.HistoryEntity
+                  }
+             ).ToListAsync(CancellationToken.None);
         }
 
         [HttpGet("{id}")]
