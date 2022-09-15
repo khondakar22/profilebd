@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProfileLearn.Data;
 using ProfileLearn.Dto;
@@ -21,6 +22,7 @@ namespace ProfileLearn.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
             return await _context.Users.Include(x => x.HistoryEntity)
@@ -35,6 +37,7 @@ namespace ProfileLearn.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<AppUser>> Getuser(int id)
         {
             return await _context.Users.FindAsync(id);
