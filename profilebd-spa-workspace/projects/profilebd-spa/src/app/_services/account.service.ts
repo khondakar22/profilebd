@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators'
+import { RequestUser } from '../_models/request.user';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
   constructor(private _http: HttpClient) { }
 
-  login(model:User) {
+  login(model:RequestUser) {
     return this._http.post<User>(this.baseUrl +'account/login', model).pipe(
       map((response: User) => {
         const user = response;
@@ -24,7 +25,7 @@ export class AccountService {
       })
     );
   }
-  register(model: any) {
+  register(model: RequestUser) {
     return this._http.post<User>(this.baseUrl +'account/register', model).pipe(
       map((user: User) => {
         if(user) {

@@ -9,7 +9,7 @@ import { AccountService } from './_services/account.service';
 })
 export class AppComponent implements OnInit {
   title = 'profilebd-spa';
-  constructor( private _accoundService: AccountService) {}
+  constructor(private _accoundService: AccountService) {}
   ngOnInit(): void {
     this.setCurrentUser();
   }
@@ -17,6 +17,4 @@ export class AppComponent implements OnInit {
     const user: User = JSON.parse(localStorage.getItem('user')!);
     this._accoundService.setCurrentUser(user);
   }
-
-  
 }
