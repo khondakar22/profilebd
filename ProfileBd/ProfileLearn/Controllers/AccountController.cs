@@ -40,7 +40,8 @@ namespace ProfileLearn.Controllers
                     LastUpdatedBy = registerDto.Username.Trim().ToLower(),
                     LastUpdatedDated = DateTime.UtcNow,
                     ExternalId = new Guid().ToString()
-                }
+                },
+                ExternalId = new Guid().ToString()
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();

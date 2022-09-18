@@ -67,7 +67,8 @@
           "options": {
             "sslKey": "./projects/profilebd-spa/ssl/server.key",
             "sslCert": "./projects/profilebd-spa/ssl/server.crt",
-            "ssl": true
+            "ssl": false,
+            "proxyConfig": "./proxy.conf.json"
           },
           "configurations": {
             "production": {

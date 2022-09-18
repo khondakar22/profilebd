@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/user';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'profilebd-spa';
-  users: any;
-  constructor(private _http: HttpClient) {}
+  constructor( private _accoundService: AccountService) {}
   ngOnInit(): void {
-    this.getUsers();
+    this.setCurrentUser();
+  }
+  setCurrentUser() {
+    const user: User = JSON.parse(localStorage.getItem('user')!);
+    this._accoundService.setCurrentUser(user);
   }
 
-  getUsers(): void {
-    this._http.get('https://localhost:5001/api/user').subscribe(
-      {
-        next: response => this.users = response,
-        error: err => console.log(err)
-      }
-    );
-  }
+  
 }

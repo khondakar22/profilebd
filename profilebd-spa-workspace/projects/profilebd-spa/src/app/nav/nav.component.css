@@ -1,0 +1,6 @@
+.dropdown-toggle, .dropdown-item {
+  cursor: pointer;
+}
+.dropdown-toggle::after{
+  vertical-align: 0.1em;
+}

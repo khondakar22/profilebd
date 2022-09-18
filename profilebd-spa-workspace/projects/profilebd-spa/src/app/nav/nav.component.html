@@ -1,0 +1,31 @@
+<nav  class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">ProfileBd</a>
+      <ul *ngIf="(currentUser$ | async) !== undefined" class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link">Matches </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" >Lists</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Messages</a>
+        </li>
+      </ul> 
+      <div *ngIf="currentUser$ | async" class="btn-group" dropdown>
+        <a  dropdownToggle type="button" class="dropdown-toggle text-light">
+         Welcome user 
+        </a>
+          <div class="dropdown-menu mt-3" *dropdownMenu>
+             <a  class="dropdown-item">Edit Profile</a>
+             <div class="dropdown-divider"></div>
+             <a  class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+      </div>
+      <form *ngIf="(currentUser$ | async) === null" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline mt-2 mt-md-0">
+        <input name="username" [(ngModel)]="model.username" class="form-control mr-sm-2" type="text" placeholder="Username">
+        <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" type="password" placeholder="Password">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">login</button>
+      </form>
+  </div>
+</nav>
