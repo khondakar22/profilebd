@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using ProfileLearn.Data;
 using ProfileLearn.Extensions;
 using ProfileLearn.Interfaces;
+using ProfileLearn.Middleware;
 using ProfileLearn.Services;
 using System;
 using System.Collections.Generic;
@@ -49,12 +50,14 @@ namespace ProfileLearn
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProfileLearn v1"));
             }
+            
 
             app.UseHttpsRedirection();
 

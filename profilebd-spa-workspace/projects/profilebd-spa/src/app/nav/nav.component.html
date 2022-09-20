@@ -21,6 +21,11 @@
           >
         </li>
       </ng-container>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/errors" routerLinkActive="active"
+          >Errors</a
+        >
+      </li>
     </ul>
     <div *ngIf="(acountService.currentUser$ | async) as user" class="btn-group" dropdown>
       <a style="text-decoration: none;" dropdownToggle type="button" class="dropdown-toggle text-light">
