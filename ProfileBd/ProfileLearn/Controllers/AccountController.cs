@@ -33,14 +33,6 @@ namespace ProfileLearn.Controllers
                 UserName = registerDto.Username.Trim().ToLower(),
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key,
-                HistoryEntity = new HistoryEntity
-                {
-                    CreatedBy = registerDto.Username.Trim().ToLower(),
-                    CreatedDate = DateTime.UtcNow,
-                    LastUpdatedBy = registerDto.Username.Trim().ToLower(),
-                    LastUpdatedDated = DateTime.UtcNow,
-                    ExternalId = new Guid().ToString()
-                },
                 ExternalId = new Guid().ToString()
             };
             _context.Users.Add(user);

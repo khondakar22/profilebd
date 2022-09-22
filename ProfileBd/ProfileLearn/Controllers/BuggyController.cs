@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProfileLearn.Data;
 using ProfileLearn.Entities;
 using System;
+using System.Linq;
 
 namespace ProfileLearn.Controllers
 {
@@ -41,6 +43,16 @@ namespace ProfileLearn.Controllers
         public ActionResult<string> GetBadRequest()
         {
             return BadRequest();
+        }
+
+
+        [HttpDelete("delete-users")]
+        public ActionResult<bool> DeleteUsers()
+        {
+            var user = _context.Users.ToList();
+            _context.Users.RemoveRange(user);
+            _context.SaveChanges();
+            return Ok(true);
         }
     }
 }

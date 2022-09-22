@@ -6,6 +6,6 @@ namespace ProfileLearn.Dto
     {
         public int Id { get; set; }
         public string UserName { get; set; }
-        public HistoryEntity CreationModificationHistory { get; set; }
+  
     }
 }
