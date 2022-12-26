@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProfileLearn.Dto;
 using ProfileLearn.Entities;
+using System.Linq;
 
 namespace ProfileLearn.Helpers
 {
@@ -8,7 +9,7 @@ namespace ProfileLearn.Helpers
     {
         public AutoMapperProfiles()
         {
-            CreateMap<AppUser, MemberDto>();
+            CreateMap<AppUser, MemberDto>().ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.FirstOrDefault(x => x.IsMain).Url));
             CreateMap<Photo, PhotoDto>();   
         }
     }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace ProfileLearn.Controllers
 {
 
-    [Authorize]
+    //[Authorize]
     public class UserController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
